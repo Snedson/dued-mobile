@@ -30,7 +30,9 @@ final class CoursesMockRepo extends CoursesRepo {
   Future<List<Course>> getCourses() async {
     if (_cachedResult == null) {
       await Future.delayed(const Duration(seconds: 2));
-      _cachedResult = [const Course(title: 'course')];
+      _cachedResult = [
+        // const Course(title: 'course'),
+      ];
     }
 
     return _cachedResult!;

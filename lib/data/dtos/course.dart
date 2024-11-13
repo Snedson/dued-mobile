@@ -1,18 +1,25 @@
-import 'package:equatable/equatable.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'course.g.dart';
+part 'course.freezed.dart';
 
-@JsonSerializable()
-final class Course extends Equatable {
-  const Course({required this.title});
+@freezed
+class Course with _$Course {
+  const factory Course({
+    required int id,
+    required String title,
+    required String description,
+    required int startWeekMonthStamp,
+    required int endWeekMonthStamp,
+    required int academicWorkloadInHoursPerWeek,
+    required String authorOrganizationFullname,
+    required String authorOrganizationShortname,
+    required List<String> relatedForEducationLevels,
+    required int createdDate,
+    required int lastReviewedDate,
+    required Object? lessons,
+    required Object? additionalFiles,
+  }) = _Course;
 
   factory Course.fromJson(Map<String, dynamic> json) => _$CourseFromJson(json);
-
-  final String title;
-
-  Map<String, dynamic> toJson() => _$CourseToJson(this);
-
-  @override
-  List<Object?> get props => [title];
 }
