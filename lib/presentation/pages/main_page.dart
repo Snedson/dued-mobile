@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:snedson_dued/presentation/pages/home_page.dart';
 import 'package:snedson_dued/presentation/pages/search_page.dart';
+import 'package:snedson_dued/presentation/widgets/dued_appbar.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -15,15 +16,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Row(
-          children: [
-            Image.asset('assets/images/dued_logo.png', width: 30, height: 30),
-            const SizedBox(width: 8),
-            const Text('Dued', style: TextStyle(fontWeight: FontWeight.w500)),
-          ],
-        ),
-      ),
+      appBar: const DuedAppbar(),
       body: _pages[_pageIndex],
       bottomNavigationBar: NavigationBar(
         selectedIndex: _pageIndex,

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:snedson_dued/data/dtos/course.dart';
 import 'package:snedson_dued/presentation/blocs/courses/courses_cubit.dart';
+import 'package:snedson_dued/presentation/widgets/course_card.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({super.key});
@@ -17,11 +19,18 @@ class SearchPage extends StatelessWidget {
         builder: (context, state) => switch (state) {
           CoursesInitial() => const SizedBox(),
           CoursesLoading() => const Center(child: CircularProgressIndicator.adaptive()),
-          CoursesLoaded() => Center(
-              child: Text('Loaded ${state.courses}', textAlign: TextAlign.center),
-            ),
+          CoursesLoaded() => _buildLoaded(state.courses),
           CoursesError() => Center(child: Text('Error ${state.error}')),
         },
+      ),
+    );
+  }
+
+  Widget _buildLoaded(List<Course> courses) {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        children: courses.map((c) => CourseCard(course: c)).toList(),
       ),
     );
   }
