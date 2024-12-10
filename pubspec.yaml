@@ -45,6 +45,7 @@ dependencies:
   pretty_dio_logger: ^1.4.0
   freezed_annotation: ^2.4.4
   material_symbols_icons: ^4.2801.0
+  calendar_view: ^1.3.0
 
 dev_dependencies:
   flutter_test:

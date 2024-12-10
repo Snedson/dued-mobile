@@ -1,3 +1,4 @@
+import 'package:calendar_view/calendar_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:snedson_dued/data/repos/courses_repo.dart';
@@ -18,13 +19,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [BlocProvider(create: (_) => CoursesCubit(repo: getIt.get<CoursesRepo>())..loadCourses())],
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromRGBO(214, 94, 221, 1)),
-          useMaterial3: true,
+      child: CalendarControllerProvider(
+        controller: EventController(),
+        child: MaterialApp(
+          title: 'Flutter Demo',
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromRGBO(214, 94, 221, 1)),
+            useMaterial3: true,
+          ),
+          home: const MainPage(),
         ),
-        home: const MainPage(),
       ),
     );
   }
