@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:snedson_dued/data/dtos/lesson.dart';
 
 part 'course.g.dart';
 part 'course.freezed.dart';
@@ -17,7 +18,7 @@ class Course with _$Course {
     required List<String> relatedForEducationLevels,
     required int createdDate,
     required int lastReviewedDate,
-    required Object? lessons,
+    required List<Lesson>? lessons,
     required Object? additionalFiles,
   }) = _Course;
 
