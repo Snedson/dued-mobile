@@ -6,8 +6,9 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Column(
+    return Scaffold(
+      backgroundColor: Theme.of(context).cardColor,
+      body: const Column(
         children: [
           DuedHeader(
             title: 'С возвращением в Dued!',

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
+import 'package:snedson_dued/core/utils/utils.dart';
 import 'package:snedson_dued/presentation/pages/home_page.dart';
 import 'package:snedson_dued/presentation/pages/profile_page.dart';
 import 'package:snedson_dued/presentation/pages/search_page.dart';
@@ -18,12 +19,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
-      builder: (context, constraints) {
-        if (constraints.maxWidth < 600) {
-          return _bottomNavbarView();
-        }
-        return _sideNavbarView();
-      },
+      builder: (context, constraints) => isScreenWide(constraints) ? _sideNavbarView() : _bottomNavbarView(),
     );
   }
 
