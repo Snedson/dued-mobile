@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:snedson_dued/data/dtos/course.dart';
 import 'package:snedson_dued/presentation/blocs/courses/courses_cubit.dart';
 import 'package:snedson_dued/presentation/widgets/course_card.dart';
+import 'package:snedson_dued/presentation/widgets/dued_header.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({super.key});
@@ -16,6 +17,7 @@ class SearchPage extends StatelessWidget {
             context.read<CoursesCubit>().loadCourses();
           }
         },
+        // TODO @nikolay-potehin (Header is always visible)
         builder: (context, state) => switch (state) {
           CoursesInitial() => const SizedBox(),
           CoursesLoading() => const Center(child: CircularProgressIndicator.adaptive()),
@@ -47,11 +49,34 @@ class SearchPage extends StatelessWidget {
       );
 
   Widget _buildLoaded(List<Course> courses) {
-    return SingleChildScrollView(
+    final Widget child = SingleChildScrollView(
       padding: const EdgeInsets.all(16),
-      child: Column(
-        children: courses.map((c) => CourseCard(course: c)).toList(),
+      child: SizedBox(
+        width: 980,
+        child: Column(
+          children: courses.map((c) => CourseCard(course: c)).toList(),
+        ),
       ),
     );
+    return Column(
+      children: [
+        const DuedHeader(title: 'Курсы'),
+        Expanded(child: child),
+      ],
+    );
+
+    // return LayoutBuilder(
+    //   builder: (context, constraints) {
+    //     if (isScreenWide(constraints)) {
+    //       return Column(
+    //         children: [
+    //           const DuedHeader(title: 'Курсы'),
+    //           Expanded(child: child),
+    //         ],
+    //       );
+    //     }
+    //     return child;
+    //   },
+    // );
   }
 }
