@@ -20,11 +20,31 @@ class SearchPage extends StatelessWidget {
           CoursesInitial() => const SizedBox(),
           CoursesLoading() => const Center(child: CircularProgressIndicator.adaptive()),
           CoursesLoaded() => _buildLoaded(state.courses),
-          CoursesError() => Center(child: Text('Error ${state.error}')),
+          CoursesError() => _buildError(context, state),
         },
       ),
     );
   }
+
+  Widget _buildError(BuildContext context, CoursesError state) => Center(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: SizedBox(
+            width: 600,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('Error ${state.error}'),
+                const SizedBox(height: 16),
+                TextButton(
+                  onPressed: context.read<CoursesCubit>().loadCourses,
+                  child: const Text('Попробовать еще раз'),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
 
   Widget _buildLoaded(List<Course> courses) {
     return SingleChildScrollView(

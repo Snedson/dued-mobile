@@ -12,7 +12,11 @@ class CoursesCubit extends Cubit<CoursesState> {
 
   void loadCourses() async {
     emit(const CoursesState.loading());
-    final courses = await repo.getCourses();
-    if (!isClosed) emit(CoursesState.loaded(courses: courses));
+    try {
+      final courses = await repo.getCourses();
+      if (!isClosed) emit(CoursesState.loaded(courses: courses));
+    } catch (e) {
+      if (!isClosed) emit(CoursesState.error(e.toString()));
+    }
   }
 }
