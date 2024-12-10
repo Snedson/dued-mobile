@@ -16,6 +16,7 @@ class DuedHeader extends StatelessWidget {
           child: Image.asset(
             'assets/images/welcome_bg.png',
             fit: BoxFit.cover,
+            width: double.infinity,
             height: 140,
           ),
         ),
