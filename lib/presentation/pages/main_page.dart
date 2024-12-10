@@ -47,19 +47,19 @@ class _MainPageState extends State<MainPage> {
             destinations: const [
               NavigationRailDestination(
                 icon: Icon(Symbols.home, weight: 700),
-                label: Text('Home'),
+                label: Text(''),
               ),
               NavigationRailDestination(
                 icon: Icon(Symbols.search, weight: 700),
-                label: Text('Search'),
+                label: Text(''),
               ),
               NavigationRailDestination(
                 icon: Icon(Symbols.conversion_path, weight: 700),
-                label: Text('Courses'),
+                label: Text(''),
               ),
               NavigationRailDestination(
                 icon: Icon(Symbols.person_raised_hand, weight: 700),
-                label: Text('Profile'),
+                label: Text(''),
               ),
             ],
             selectedIndex: _pageIndex,
@@ -77,22 +77,23 @@ class _MainPageState extends State<MainPage> {
       bottomNavigationBar: NavigationBar(
         selectedIndex: _pageIndex,
         onDestinationSelected: (value) => setState(() => _pageIndex = value),
+        labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
         destinations: const [
           NavigationDestination(
             icon: Icon(Symbols.home, weight: 700),
-            label: 'Home',
+            label: '',
           ),
           NavigationDestination(
             icon: Icon(Symbols.search, weight: 700),
-            label: 'Search',
+            label: '',
           ),
           NavigationDestination(
             icon: Icon(Symbols.conversion_path, weight: 700),
-            label: 'Courses',
+            label: '',
           ),
           NavigationDestination(
             icon: Icon(Symbols.person_raised_hand, weight: 700),
-            label: 'Profile',
+            label: '',
           ),
         ],
       ),
