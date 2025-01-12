@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:snedson_dued/core/utils/utils.dart';
 import 'package:snedson_dued/presentation/pages/home_page.dart';
+import 'package:snedson_dued/presentation/pages/library_page.dart';
 import 'package:snedson_dued/presentation/pages/profile_page.dart';
 import 'package:snedson_dued/presentation/pages/search_page.dart';
 import 'package:snedson_dued/presentation/widgets/dued_appbar.dart';
@@ -14,7 +15,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  int _pageIndex = 0;
+  int _pageIndex = 3;
 
   @override
   Widget build(BuildContext context) {
@@ -104,6 +105,6 @@ class _MainPageState extends State<MainPage> {
 const _pages = <Widget>[
   HomePage(),
   SearchPage(),
-  Center(child: Text('Courses')),
+  LibraryPage(),
   ProfilePage(),
 ];
