@@ -1,6 +1,7 @@
 import 'package:calendar_view/calendar_view.dart';
 import 'package:flutter/material.dart';
-import 'package:snedson_dued/presentation/widgets/dued_appbar.dart';
+import 'package:snedson_dued/data/dtos/course.dart';
+import 'package:snedson_dued/presentation/pages/course_page.dart';
 import 'package:snedson_dued/presentation/widgets/dued_header.dart';
 
 class HomePage extends StatelessWidget {
@@ -17,14 +18,14 @@ class HomePage extends StatelessWidget {
         //     child: SafeArea(child: WeekView(), ),
         //   ),
 
-        const Column(
+        Column(
       children: [
-        DuedHeader(
+        const DuedHeader(
           title: 'С возвращением в Dued!',
           subtitle: 'Это ваш календарный план',
         ),
         Padding(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           // child: LayoutBuilder(
           //   builder: (context, constraints) => SizedBox(
           //     height: constraints.maxHeight,
@@ -33,8 +34,17 @@ class HomePage extends StatelessWidget {
           // ),
           child: SizedBox(
             width: 980,
-            height: 600,
-            child: WeekView(),
+            height: 500,
+            child: WeekView(
+              onEventTap: (events, date) {
+                if (events.isNotEmpty && events.first.event is Course) {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => CoursePage(course: events.first.event as Course),
+                  ));
+                }
+              },
+              backgroundColor: Theme.of(context).cardColor,
+            ),
           ),
         ),
       ],
